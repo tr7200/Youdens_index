@@ -1,0 +1,22 @@
+import keras.backend as K
+
+def youdens_index(y_pred, y_true):
+  '''
+  Custom loss metric for imbalanced binary classification data adapted from:
+  
+  Kaivanto, K. (2008). Maximization of the sum of sensitivity and specificity 
+  as a diagnostic cutpoint criterion.
+  Journal of clinical epidemiology, 61(5), 517-518.
+  '''
+
+  def sensitivity(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+    return (true_positives / (possible_positives + K.epsilon()))
+
+  def specificity(y_true, y_pred):
+    true_negatives = K.sum(K.round(K.clip((1-y_true) * (1-y_pred), 0, 1)))
+    possible_negatives = K.sum(K.round(K.clip(1-y_true, 0, 1)))
+    return (true_negatives / (possible_negatives + K.epsilon()))
+
+  return specificity(y_true, y_pred) + sensitivity(y_true, y_pred) - 1
