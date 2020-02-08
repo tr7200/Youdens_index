@@ -30,6 +30,6 @@ Usage:
 This metric is suitable for training with imbalanced 
 classification models.
 
-`python setup.py` to install.
+`python setup.py install` to install.
 
 MIT License
