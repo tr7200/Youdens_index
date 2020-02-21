@@ -7,6 +7,10 @@ def youdens_index(y_pred, y_true):
   Kaivanto, K. (2008). Maximization of the sum of sensitivity and specificity 
   as a diagnostic cutpoint criterion.
   Journal of clinical epidemiology, 61(5), 517-518.
+  
+  Args:
+      y_pred: batch prediction output
+      y_true: ground truth
   '''
 
   def sensitivity(y_true, y_pred):
