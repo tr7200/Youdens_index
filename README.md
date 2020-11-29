@@ -3,7 +3,7 @@
 Youden's index, a metric for imbalanced data with Tensorflow-Keras and PyTorch
 
 Created using Keras 2.2.4 and Tensorflow 1.13. Probably works with Tensorflow < 2.0. 
-No plans to port to 2.0 but I may port it to PyTorch.
+No plans to port to TF 2.0+.
 
 Custom Keras metric that measures the maximization of
 sensitivity and specificity following Kaivanto (2008):
