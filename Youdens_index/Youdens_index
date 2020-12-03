@@ -2,12 +2,7 @@ import keras.backend as K
 import torch
 
 def youdens_index_keras(y_pred, y_true):
-  '''
-  Custom loss metric for imbalanced binary classification data adapted from:
-  
-  Kaivanto, K. (2008). Maximization of the sum of sensitivity and specificity 
-  as a diagnostic cutpoint criterion.
-  Journal of clinical epidemiology, 61(5), 517-518.
+  '''Custom loss metric for imbalanced binary classification data
   
   Args:
       y_pred: batch prediction output
@@ -29,7 +24,8 @@ def youdens_index_keras(y_pred, y_true):
 
 
  def youdens_index_pytorch(output, target):
-  '''
+  '''Custom loss metric for imbalanced binary classification data
+  
   Args:
       output : batch prediction output
       target : ground truth
