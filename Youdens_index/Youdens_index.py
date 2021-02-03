@@ -6,11 +6,11 @@ import keras.backend as K
 def youdens_index_keras(y_pred, y_true):
   '''Custom loss metric for imbalanced binary classification data
   
-  ARGS:
+  Args:
       y_pred: batch prediction output
       y_true: ground truth
       
-  RETURNS:
+  Returns:
       Youden's index Keras metric
   '''
 
@@ -33,11 +33,11 @@ def youdens_index_keras(y_pred, y_true):
  def youdens_index_pytorch(output, target):
   '''Custom loss metric for imbalanced binary classification data
   
-  ARGS:
+  Args:
       output : batch prediction output
       target : ground truth
   
-  RETURNS:
+  Returns:
       Youden's index PyTorch training metric
   '''
 
