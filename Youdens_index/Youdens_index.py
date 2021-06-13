@@ -43,7 +43,6 @@ def youdens_index_pytorch(output, target):
 
     sensitivity = (true_positives / (possible_positives + 1e-7))
 
-
     true_negatives = torch.sum(torch.round(torch.clamp((1-output) * (1-target), 0, 1)))
     possible_negatives = torch.sum(torch.round(torch.clamp(1-target, 0, 1)))
 
