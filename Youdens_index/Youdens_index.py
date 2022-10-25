@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 
 import keras.backend as K
 
@@ -28,24 +29,33 @@ def youdens_index_keras(y_pred, y_true):
 
 
 
-def youdens_index_pytorch(output, target):
-    '''Custom loss metric for imbalanced binary classification data
+class YoudensIndex(nn.Module):
+    '''Custom loss metric for imbalanced binary classification data'''
 
-    Args:
-        output : batch prediction output
-        target : ground truth
+    def __init__():
+        super(YoudensIndex, self).__init__()
+        
+    def forward(self,
+                logits,
+                targets):
+        '''Calculate Youden's Index.    
+        
+        Attr:
+            output : batch prediction output
+            target : ground truth
 
-    Returns:
-        Youden's index PyTorch training metric
-    '''
-    true_positives = torch.sum(torch.round(torch.clamp(output, target, 0, 1)))
-    possible_positives = torch.sum(torch.round(torch.clamp(target, 0, 1)))
+        Returns:
+            Youden's index PyTorch training metric
+        '''
 
-    sensitivity = (true_positives / (possible_positives + 1e-7))
+        true_positives = torch.sum(torch.round(torch.clamp(logits, targets, 0, 1)))
+        possible_positives = torch.sum(torch.round(torch.clamp(targets, 0, 1)))
 
-    true_negatives = torch.sum(torch.round(torch.clamp((1-output) * (1-target), 0, 1)))
-    possible_negatives = torch.sum(torch.round(torch.clamp(1-target, 0, 1)))
+        sensitivity = (true_positives / (possible_positives + 1e-7))
 
-    specificity = (true_negatives / (possible_negatives + 1e-7))
+        true_negatives = torch.sum(torch.round(torch.clamp((1-logits) * (1-targets), 0, 1)))
+        possible_negatives = torch.sum(torch.round(torch.clamp(1-targets, 0, 1)))
 
-    return specificity + sensitivity - 1
+        specificity = (true_negatives / (possible_negatives + 1e-7))
+
+        return specificity + sensitivity - 1
